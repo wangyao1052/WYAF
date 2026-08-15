@@ -161,6 +161,8 @@ public:
     //   - NullDocumentPointer: pDoc is nullptr.
     //   - DocumentNotManaged: pDoc is not managed by the document manager.
     //   - InvalidFilePath: invalid file path.
+    //   - DuplicateFileName: the output path conflicts with another managed
+    //     document.
     //   - CantOpenFile: the output file cannot be opened.
     wy::ErrorStatus saveDocument(
         Document* pDoc,
