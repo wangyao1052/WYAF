@@ -133,7 +133,7 @@ public:
     //   - Ok: succeeded.
     //   - TransactionManagerBusy: the transaction manager is busy now.
     //   - NotCurrentlyAllowed: a new transaction cannot be started while the
-    //     current active transaction is still in progress.
+    //     current active transaction is a transaction leaf.
     virtual wy::ErrorStatus startTransaction(
         const std::string& name,
         const TransactionOption& option,
@@ -146,13 +146,14 @@ public:
         const TransactionOption& option = TransactionOption()) = 0;
 
     // Start a transaction group.
+    // A transaction group can be nested inside another transaction group.
     // @param name Transaction group name.
     // @param pTransaction Output transaction pointer.
     // @return
     //   - Ok: succeeded.
     //   - TransactionManagerBusy: the transaction manager is busy now.
-    //   - NotCurrentlyAllowed: a new transaction group cannot be started while
-    //     the current active transaction is still in progress.
+    //   - NotCurrentlyAllowed: a new transaction cannot be started while the
+    //     current active transaction is a transaction leaf.
     virtual wy::ErrorStatus startTransactionGroup(
         const std::string& name,
         Transaction*& pTransaction) = 0;
