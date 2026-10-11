@@ -11,6 +11,7 @@
 #include <vector>
 #include <list>
 #include <memory>
+#include <cassert>
 
 #include <wyVector3.h>
 #include <wyIterator.h>
@@ -60,6 +61,7 @@ public:
         , _elemId(elemId)
         , _subPath(subPath)
     {
+        assert(_selectionType != 0);
     }
 
     Selection(const Selection& rhs)
@@ -92,7 +94,7 @@ public:
     ~Selection() = default;
 
     // Selection type value identifying the whole element.
-    static constexpr unsigned int kWholeElement = 0;
+    static constexpr unsigned int kWholeElement = 1;
 
     // Get the selection type.
     // kWholeElement identifies the whole element.
